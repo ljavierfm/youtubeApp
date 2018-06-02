@@ -5,6 +5,8 @@
 /tmp
 /out-tsc
 
+/src/app/config.ts
+
 # dependencies
 /node_modules
 
