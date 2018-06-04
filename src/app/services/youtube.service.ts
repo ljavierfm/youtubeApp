@@ -12,9 +12,24 @@ export class YoutubeService {
 
   constructor(private http:HttpClient) { }
 
-  getVideos(){
+  getVideos(nextToken=null){
     let url = `${this.youtubeUrl}/playlistItems`;
-    let params=new HttpParams().set('part','snippet').set('maxResults','12').set('playlistId','UU7xYS30lwFpT6mr07Qz6zRw').set('key',API_KEY);
+    let params;
+    if(!nextToken){
+      params = new HttpParams().
+      set('part', 'snippet').
+      set('maxResults', '12').
+      set('playlistId', 'UU7xYS30lwFpT6mr07Qz6zRw').
+      set('key', API_KEY);
+    }
+    else{
+      params = new HttpParams().
+      set('part', 'snippet').
+      set('maxResults', '12').
+      set('playlistId', 'UU7xYS30lwFpT6mr07Qz6zRw').
+      set('key', API_KEY).
+      set('pageToken', nextToken)
+    }
 
     return this.http.get(url,{params:params});
 
